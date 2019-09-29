@@ -168,8 +168,8 @@ class Controller {
 
         let thead = this.table.createTHead(0);
         let tRow = thead.insertRow(0);
-        tRow.classList.add('bg-primary')
-        tRow.classList.add('text-white')
+        tRow.classList.add('bg-light');
+        tRow.classList.add('text-dark');
         tRow.insertCell(0).textContent = 'Id';
         tRow.insertCell(1).textContent = 'Nombre';
         tRow.insertCell(2).textContent = 'Stock';
@@ -181,7 +181,7 @@ class Controller {
         for (let i = 0; i < this.inventary.products.length; i++) {
 
             var row = this.table.insertRow(i + 1);
-            if (i % 2 == 0) {
+            if (i % 2 != 0) {
                 row.classList.add('bg-light');
             }
 
