@@ -8,7 +8,7 @@ urlsToCache = [
     './js/main.js',
     './img/edit.png'
 ]
-//durante la fase de instalación, generalmente se almacena en caché los activos estáticos
+//durante la fase de instalación, generalmente se almacena en caché los archivos estáticos
 self.addEventListener('install', e => {
     e.waitUntil(
       caches.open(CACHE_NAME)
