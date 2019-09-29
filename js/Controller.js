@@ -169,7 +169,8 @@ class Controller {
         let thead = this.table.createTHead(0);
         let tRow = thead.insertRow(0);
         tRow.classList.add('bg-light');
-        tRow.classList.add('text-dark');
+        tRow.classList.add('text-primary');
+        tRow.classList.add('font-weight-bold');
         tRow.insertCell(0).textContent = 'Id';
         tRow.insertCell(1).textContent = 'Nombre';
         tRow.insertCell(2).textContent = 'Stock';
@@ -193,13 +194,13 @@ class Controller {
 
             let btnDelete = row.insertCell(5);
             btnDelete.setAttribute('id', 'btnDelete' + this.inventary.products[i].id);
-            btnDelete.innerHTML = '<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteConfirm"><img src="img/delete.png" class="img-fluid" width="20px"></button>';
+            btnDelete.innerHTML = '<button class="btn btn-danger class="img-fluid" data-toggle="modal" data-target="#modalDeleteConfirm"><img src="img/delete.png" class="img-fluid" width="20px"></button>';
             btnDelete.addEventListener('click', () => {
                 this.idSelected = this.inventary.products[i].id;
             });
 
             let btnEdit = row.insertCell(6);
-            btnEdit.innerHTML = '<button class="btn btn-warning"><img src="img/edit.png" class="img-fluid" width="16px"></button>';
+            btnEdit.innerHTML = '<button class="btn btn-warning class="img-fluid"><img src="img/edit.png" class="img-fluid" width="16px"></button>';
             btnEdit.addEventListener('click', () => {
                 this.idSelected = this.inventary.products[i].id;
                 document.getElementById('name').value = this.inventary.products[i].name;
