@@ -6,7 +6,8 @@ urlsToCache = [
     './css/style.css',
     './js/Controller.js',
     './js/main.js',
-    './img/edit.png'
+    './img/edit.png',
+    './img/delete.png'
 ]
 //durante la fase de instalación, generalmente se almacena en caché los archivos estáticos
 self.addEventListener('install', e => {
