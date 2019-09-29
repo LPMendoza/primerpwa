@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#2B57D2">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" href="img/edit.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/edit.png" type="image/png">
+    <link rel="apple-touch-startup-image" href="img/edit.png" type="image/png">
+    <link rel="manifest" href="./manifest.json">
+    <title>Inventario</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="continer-fluid bg-transparent shadow-sm">
+        <div class="container bg-transparent">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+                <a class="navbar-brand font-weight-bold" tabindex="-1" href="#">Control de Inventario</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-12 col-md-9 col-lg-6 mb-3">
+                <div class="px-4 pt-3 pb-4 shadow bg-white rounded">
+                    <h1>Ingresa tus datos</h1>
+                    <hr>
+                    <div class="form-group">
+                        <label for="name">Producto</label>
+                        <input type="text" tabindex="1" class="form-control" name="name" id="name"
+                            placeholder="Escribe el nombre del producto...">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="number" tabindex="2" class="form-control" name="stock"
+                            placeholder="Escribe la cantidad de producto..." id="stock">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Precio</label>
+                        <input type="number" tabindex="3" class="form-control" name="price"
+                            placeholder="Escribe la cantidad de producto..." id="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="brand">Marca</label>
+                        <input type="text" tabindex="4" class="form-control" name="brand" id="brand"
+                            placeholder="Escribe la marca...">
+                    </div>
+                    <button id="btnGuardar" tabindex="5" class="btn btn-primary d-block">Guardar</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-9 col-lg-6 bg-white shadow mb-3 px-0 pt-3 pb-4 contTable table-responsive rounded"
+                style="max-height: 700px !important; overflow: auto;">
+                <h1 class="px-4 text-dark my-0">Productos</h1>
+                <div class="input-group">
+                    <input class="form-control pr-0 ml-3 mt-3 mb-3 rounded" id="txtSearch"  type="search"
+                        placeholder="Buscar..." aria-label="Search">
+                    <div class="input-group-append" style="border: none !important;">
+                        <span class="input-group-text bg-white" style="border: none !important;">
+                            <img src="https://image.flaticon.com/icons/svg/149/149401.svg" width="24"
+                                class="d-inline-block align-top " alt="">
+                        </span>
+                    </div>
+                </div>
+                <table class="table p-3 my-0 table-borderless" id="table"></table>
+            </div>
+        </div>
+        <div class="modal fade" id="modalDeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">¿Desea eliminar el artículo?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Una vez eliminado desaparecera del inventario.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnDeleteConfirm" class="btn btn-primary"
+                            data-dismiss="modal">Sí</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalEditConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">¿Desea guardar los cambios?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnEditConfirm" class="btn btn-primary"
+                            data-dismiss="modal">Sí</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/Controller.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
