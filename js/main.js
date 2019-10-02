@@ -10,7 +10,6 @@ document.getElementById('btnGuardar').addEventListener('click', () => {
 
     if(ctrl.getIdSelected() == null) {
         ctrl.addProduct(name, stock, price, brand);
-        
     }
     else {
         $('#modalEditConfirm').modal('show');
@@ -46,3 +45,4 @@ document.getElementById('txtSearch').addEventListener('keyup', (event) => {
         ctrl.searchProduct(document.getElementById('txtSearch').value.trim());
     }
 });
+

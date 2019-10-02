@@ -61,14 +61,25 @@
                             placeholder="Escribe la marca del producto...">
                     </div>
                     <button id="btnGuardar" tabindex="5" class="btn btn-primary d-inline-block">Guardar</button>
-                    <button id="btnLimpiar" tabindex="5" class="btn btn-success d-inline-block mx-2">Limpiar</button>
+                    <button id="btnLimpiar" tabindex="5" class="btn btn-light d-inline-block mx-2">Limpiar</button>
+                    <div id="toast" style="position: absolute; top: 0; right: 0; z-index: 100;"
+                        class=" toast d-flex justify-content-center align-items-center" data-delay="3000" role="alert"
+                        aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong class="mr-auto" id="toastMS">Registro exitoso.</strong>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+            
                 </div>
             </div>
             <div class="col-12 col-md-9 col-lg-6 bg-white shadow mb-3 px-0 pt-3 pb-4 contTable table-responsive rounded"
                 style="max-height: 700px !important; overflow: auto;">
                 <h1 class="px-4 text-dark my-0">Productos</h1>
                 <div class="input-group">
-                    <input class="form-control pr-0 ml-3 mt-3 mb-3 rounded" id="txtSearch"  type="search"
+                    <input class="form-control pr-0 ml-3 mt-3 mb-3 rounded" id="txtSearch" type="search"
                         placeholder="Buscar..." aria-label="Search">
                     <div class="input-group-append" style="border: none !important;">
                         <span class="input-group-text bg-white" style="border: none !important;">

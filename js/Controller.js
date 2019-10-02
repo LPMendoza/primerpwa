@@ -45,6 +45,10 @@ class Controller {
             stock.value = null;
             price.value = null;
             brand.value = null;
+
+            document.getElementById('toastMS').textContent = "Registro exitoso."
+            $('#toast').toast('show');	
+
         }
     }
 
@@ -72,6 +76,8 @@ class Controller {
         price.value = null;
         brand.value = null;
 
+        document.getElementById('toastMS').textContent = "Actualización exitosa."
+        $('#toast').toast('show');
     }
 
     deleteProduct(id) {
@@ -86,7 +92,8 @@ class Controller {
         localStorage.setItem('inventary', JSON.stringify(this.inventary));
         this.idSelected = null;
         this.paintTable();
-
+        document.getElementById('toastMS').textContent = "Eliminación exitosa."
+        $('#toast').toast('show');
     }
 
     getIdSelected() {
