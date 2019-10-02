@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 body {
     background: url('../img/b1.jpg');
     background-attachment: fixed;
     background-size: cover;
+    font-family: 'Roboto';
 }
 
 .contTable::-webkit-scrollbar-track {
@@ -19,4 +21,8 @@ body {
 
 .contTable::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
+}
+
+.invalid {
+    border-color: red;
 }

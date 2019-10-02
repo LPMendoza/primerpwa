@@ -160,11 +160,21 @@ class Controller {
         }
     }
 
-    valid() {
+    valid(name, stock, price, brand) {
+
+        let exp = /^\d+$/;
         if (name.value == "" || stock.value == null || price.value == null || brand.value == "") {
-            alert("Hay campos faltantes");
+            document.getElementById('toastMS').textContent = "Hay campos faltantes."
+            $('#toast').toast('show');
             return false;
-        } else {
+        } 
+        else if ((!(exp.test(price.value))) || (!(exp.test(stock.value)))) {
+            document.getElementById('toastMS').textContent = "Campos invalidos."
+            $('#toast').toast('show');
+        }
+        
+        else {
+
             return true;
         }
     }
