@@ -7,7 +7,9 @@
       './js/Controller.js',
       './js/main.js',
       './img/edit.png',
-      './img/delete.png'
+      './img/delete.png',
+      './img/b1.jpg',
+      './index.js'
     ]
 
   //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
