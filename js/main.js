@@ -20,10 +20,10 @@ document.getElementById('btnGuardar').addEventListener('click', () => {
 
 document.getElementById('btnLimpiar').addEventListener('click', () => {
 
-    let name = document.getElementById('name').value = null;
-    let stock = document.getElementById('stock').value = null;
-    let price = document.getElementById('price').value = null;
-    let brand = document.getElementById('brand').value = null;
+    document.getElementById('name').value = null;
+    document.getElementById('stock').value = null;
+    document.getElementById('price').value = null;
+    document.getElementById('brand').value = null;
 
 });
 
