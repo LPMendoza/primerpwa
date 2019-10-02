@@ -2,7 +2,7 @@
   //asignar un nombre y versión al cache
   const CACHE_NAME = 'cache_inventario',
     urlsToCache = [
-      './',
+      './index.html',
       './css/style.css',
       './js/Controller.js',
       './js/main.js',
