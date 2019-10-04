@@ -14,7 +14,15 @@ class Controller {
             if (this.inventary.products.length == 0) {
                 this.count = 0;
             } else {
-                this.count = this.inventary.products[this.inventary.products.length - 1].id;
+
+                let prd = this.inventary.products;
+                let idArray = [];
+                for(let i = 0; i < prd.length; i++) {
+                    idArray.push(prd[i].id);
+                }
+                let qs = new QuickSort();
+                let idM = qs.quickSort(idArray);
+                this.count = idM[idM.length - 1];
             }
         } else {
             this.inventary = {
@@ -57,7 +65,7 @@ class Controller {
         for (let i = 0; i < products.length; i++) {
             if (products[i].id == id) {
                 let product = {
-                    id: this.count,
+                    id: products[i].id,
                     name: name.value.trim(),
                     stock: stock.value,
                     price: price.value,
