@@ -1,7 +1,7 @@
 let ctrl = new Controller(document.getElementById('table'));
-ctrl.paintTable();
+startUp();
 
-document.getElementById('btnGuardar').addEventListener('click', () => {
+document.getElementById('btnGuardar').addEventListener('click', function() {
 
     let name = document.getElementById('name');
     let stock = document.getElementById('stock');
@@ -12,12 +12,13 @@ document.getElementById('btnGuardar').addEventListener('click', () => {
         ctrl.addProduct(name, stock, price, brand);
     }
     else {
-        $('#modalEditConfirm').modal('show');
+        if(ctrl.valid(name, stock, price, brand))
+            $('#modalEditConfirm').modal('show');
     }
 
 });
 
-document.getElementById('btnLimpiar').addEventListener('click', () => {
+document.getElementById('btnLimpiar').addEventListener('click', function() {
 
     document.getElementById('name').value = null;
     document.getElementById('stock').value = null;
@@ -27,11 +28,11 @@ document.getElementById('btnLimpiar').addEventListener('click', () => {
 });
 
 
-document.getElementById('btnDeleteConfirm').addEventListener('click', () => {
+document.getElementById('btnDeleteConfirm').addEventListener('click', function() {
     ctrl.deleteProduct(ctrl.getIdSelected());
 });
 
-document.getElementById('btnEditConfirm').addEventListener('click', () => {
+document.getElementById('btnEditConfirm').addEventListener('click', function() {
     let name = document.getElementById('name');
     let stock = document.getElementById('stock');
     let price = document.getElementById('price');
@@ -40,9 +41,37 @@ document.getElementById('btnEditConfirm').addEventListener('click', () => {
     ctrl.updateProduct(ctrl.getIdSelected(), name, stock, price, brand);
 });
 
-document.getElementById('txtSearch').addEventListener('keyup', (event) => {
+document.getElementById('txtSearch').addEventListener('keyup', async function(event) {
     if(event.keyCode != 46) {
-        ctrl.searchProduct(document.getElementById('txtSearch').value.trim());
+        document.getElementById('loading').classList.remove('d-none');
+        document.getElementById('loading').classList.add('d-block');   
+        await ctrl.searchProduct(document.getElementById('txtSearch').value.trim());
+        document.getElementById('loading').classList.add('d-none');
+        document.getElementById('loading').classList.remove('d-block');
     }
 });
 
+document.getElementById('btnSincronizar').addEventListener('click', async function() {
+    await ctrl.syncUpAdd();
+    await ctrl.syncUpUpdate();
+    await ctrl.syncUpDelete();
+    await ctrl.paintTable();
+    document.getElementById('toastMS').textContent = "Sincronización exitosa."
+    $('#toast').toast('show');
+    this.classList.remove('d-inline-block');
+    this.classList.add('d-none');
+});
+
+document.getElementById('btnRefreshTable').addEventListener('click', async function() {
+    document.getElementById('loading').classList.remove('d-none');
+    document.getElementById('loading').classList.add('d-block');
+    await ctrl.verifyConnection();    
+    await ctrl.paintTable();
+    document.getElementById('loading').classList.add('d-none');
+    document.getElementById('loading').classList.remove('d-block');
+});
+
+async function startUp() { 
+    await ctrl.verifyConnection();    
+    await ctrl.paintTable();
+}
