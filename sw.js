@@ -12,7 +12,7 @@
       './img/b1.jpg',
       './index.js',
       './sw.js',
-      'index.js'
+      './index.js'
     ]
 
   //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
