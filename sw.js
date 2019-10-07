@@ -3,7 +3,6 @@
   const CACHE_NAME = 'cache_inventario',
     urlsToCache = [
       './',
-      './css/toastify.css',
       './css/style.css',
       './js/Controller.js',
       './js/main.js',
