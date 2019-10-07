@@ -72,6 +72,7 @@ document.getElementById('btnRefreshTable').addEventListener('click', async funct
 });
 
 async function startUp() { 
+    
     await ctrl.verifyConnection();    
     await ctrl.paintTable();
 }

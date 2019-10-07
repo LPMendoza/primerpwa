@@ -46,13 +46,15 @@ var ProductosRoutes = /** @class */ (function () {
     //consultar información de administradores    
     ProductosRoutes.prototype.getProductos = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var producto;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query("SELECT * FROM PRODUCTO ORDER BY name")];
+                    case 0: return [4 /*yield*/, database_1.default.query("SELECT * FROM PRODUCTO ORDER BY name", function (error, result, fields) {
+                            if (error)
+                                throw error;
+                            res.json(result);
+                        })];
                     case 1:
-                        producto = _a.sent();
-                        res.json(producto);
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -60,13 +62,15 @@ var ProductosRoutes = /** @class */ (function () {
     };
     ProductosRoutes.prototype.searchProduct = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var producto;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query("SELECT * FROM PRODUCTO WHERE name LIKE '" + req.body.name + "%' ORDER BY name")];
+                    case 0: return [4 /*yield*/, database_1.default.query("SELECT * FROM PRODUCTO WHERE name LIKE '" + req.body.name + "%' ORDER BY name", function (error, result, fields) {
+                            if (error)
+                                throw error;
+                            res.json(result);
+                        })];
                     case 1:
-                        producto = _a.sent();
-                        res.json(producto);
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -74,13 +78,13 @@ var ProductosRoutes = /** @class */ (function () {
     };
     ProductosRoutes.prototype.addProducto = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var producto;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query("INSERT INTO PRODUCTO (name, price, stock, brand) VALUES ('" + req.body.name + "', " + req.body.price + ", " + req.body.stock + ", '" + req.body.brand + "')")];
+                    case 0: return [4 /*yield*/, database_1.default.query("INSERT INTO PRODUCTO (name, price, stock, brand) VALUES ('" + req.body.name + "', " + req.body.price + ", " + req.body.stock + ", '" + req.body.brand + "')", function (error, result, fields) {
+                            res.json({ message: 'successfull' });
+                        })];
                     case 1:
-                        producto = _a.sent();
-                        res.json({ message: 'successfull' });
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -88,13 +92,13 @@ var ProductosRoutes = /** @class */ (function () {
     };
     ProductosRoutes.prototype.updateProduct = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var producto;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query("UPDATE PRODUCTO SET name='" + req.body.name + "', price=" + req.body.price + ", stock=" + req.body.stock + ", brand='" + req.body.brand + "' WHERE id=" + req.body.id)];
+                    case 0: return [4 /*yield*/, database_1.default.query("UPDATE PRODUCTO SET name='" + req.body.name + "', price=" + req.body.price + ", stock=" + req.body.stock + ", brand='" + req.body.brand + "' WHERE id=" + req.body.id, function (error, result, fields) {
+                            res.json({ message: 'successfull' });
+                        })];
                     case 1:
-                        producto = _a.sent();
-                        res.json({ message: 'successfull' });
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -102,13 +106,13 @@ var ProductosRoutes = /** @class */ (function () {
     };
     ProductosRoutes.prototype.deleteProduct = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var producto;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query("DELETE FROM PRODUCTO WHERE id=" + req.body.id)];
+                    case 0: return [4 /*yield*/, database_1.default.query("DELETE FROM PRODUCTO WHERE id=" + req.body.id, function (error, result, fields) {
+                            res.json({ message: 'successfull' });
+                        })];
                     case 1:
-                        producto = _a.sent();
-                        res.json({ message: 'delete successfull' });
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

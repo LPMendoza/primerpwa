@@ -75,7 +75,7 @@ class Controller {
                 price: price.value,
                 brand: brand.value.trim()
             }
-            this.verifyConnection();
+            await this.verifyConnection();
 
             if (this.areConexion) {
                 let options = {
@@ -139,7 +139,7 @@ class Controller {
             price: price.value,
             brand: brand.value.trim()
         };
-        this.verifyConnection();
+        await this.verifyConnection();
         if (this.areConexion) {
             let options = {
                 method: 'PUT',
@@ -197,6 +197,8 @@ class Controller {
                 'Content-Type': 'application/json'
             }
         }
+        document.getElementById('loading').classList.remove('d-none');
+        document.getElementById('loading').classList.add('d-block');
         await fetch(`http://${this.API_URL}:3000`, options)
             .then(() => {
                 this.areConexion = true;
@@ -206,10 +208,12 @@ class Controller {
                 document.getElementById('toastSCMS').textContent = "ESTÁS TRABAJANDO SIN CONEXIÓN."
                 $('#toastSC').toast('show');
             });
+        document.getElementById('loading').classList.add('d-none');
+        document.getElementById('loading').classList.remove('d-block');
     }
 
     async deleteProduct(id) {
-        this.verifyConnection();
+        await this.verifyConnection();
         if (this.areConexion) {
             let options = {
                 method: 'DELETE',
@@ -612,6 +616,8 @@ class Controller {
 
     async paintTable() {
 
+        document.getElementById('loading').classList.remove('d-none');
+        document.getElementById('loading').classList.add('d-block');
         if (this.areConexion) {
             await this.getProducts();
             this.table.innerHTML = '';
@@ -712,7 +718,8 @@ class Controller {
                 });
             }
         }
-
+        document.getElementById('loading').classList.add('d-none');
+        document.getElementById('loading').classList.remove('d-block');
     }
 
     cleanFields(name, stock, price, brand) {
