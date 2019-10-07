@@ -40,7 +40,7 @@
             <div class="col-12 col-md-9 col-lg-6 mb-3" id="form">
                 <div class="px-4 pt-3 pb-4 shadow bg-white rounded">
                     <div id="toast" style="position: absolute; top: 0; right: 50; z-index: 100;"
-                        class=" toast d-flex bg-success justify-content-center align-items-center" data-delay="3000"
+                        class=" toast col-12 d-flex bg-success justify-content-center align-items-center" data-delay="3000"
                         role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header bg-success text-white">
                             <strong class="mr-auto " id="toastMS">Registro exitoso.</strong>
@@ -72,11 +72,13 @@
                         <label for="stock">Stock</label>
                         <input type="number" tabindex="2" class="form-control" name="stock"
                             placeholder="Escribe la cantidad de artículo..." id="stock">
+                            <small id="stockHelp" class="form-text text-muted d-none">Solo números: 10, 2, 5, ...</small>
                     </div>
                     <div class="form-group">
                         <label for="price">Precio</label>
                         <input type="number" tabindex="3" class="form-control" name="price"
                             placeholder="Escribe el precio del artículo..." id="price">
+                            <small id="priceHelp" class="form-text text-muted d-none">Solo números: 10, 2, 5, ...</small>
                     </div>
                     <div class="form-group">
                         <label for="brand">Marca</label>
@@ -96,7 +98,7 @@
 
                 <div class="input-group">
                     <input class="form-control pr-0 ml-3 mt-3 mb-3 rounded" id="txtSearch" type="text"
-                        placeholder="Buscar artículo..." aria-label="Search">
+                        placeholder="Buscar artículo...">
                     <div class="input-group-append" style="border: none !important;">
                         <span class="input-group-text bg-white" style="border: none !important;">
                             <img src="https://image.flaticon.com/icons/svg/149/149401.svg" width="24"

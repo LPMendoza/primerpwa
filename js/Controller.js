@@ -88,7 +88,7 @@ class Controller {
                 await fetch(`${this.API_URL}`, options);
                 await this.paintTable();
 
-                document.getElementById('toastMS').textContent = "Registro exitoso."
+                document.getElementById('toastMS').textContent = "REGISTRO EXITOSO"
                 $('#toast').toast('show');
                 this.cleanFields(name, stock, price, brand);
             } else {
@@ -123,7 +123,7 @@ class Controller {
                 this.inventary.products.push(product);
                 localStorage.setItem('forAdd', JSON.stringify(this.forAdd));
                 localStorage.setItem('inventary', JSON.stringify(this.inventary));
-                document.getElementById('toastMS').textContent = "Registro exitoso."
+                document.getElementById('toastMS').textContent = "REGISTRO EXITOSO"
                 this.cleanFields(name, stock, price, brand);
                 await this.paintTable();
 
@@ -150,14 +150,14 @@ class Controller {
             }
             await fetch(`${this.API_URL}`, options)
 
-            document.getElementById('toastMS').textContent = "Registro exitoso."
+            document.getElementById('toastMS').textContent = "REGISTRO EXITOSO"
             $('#toast').toast('show');
 
             this.cleanFields(name, stock, price, brand);
             this.idSelected = null;
             this.paintTable();
 
-            document.getElementById('toastMS').textContent = "Actualización exitosa."
+            document.getElementById('toastMS').textContent = "ACTUALIZACIÓN EXITOSA"
             $('#toast').toast('show');
         } else {
             for (let i = 0; i < this.inventary.products.length; i++) {
@@ -184,7 +184,7 @@ class Controller {
             this.idSelected = null;
             this.paintTable();
 
-            document.getElementById('toastMS').textContent = "Actualización exitosa."
+            document.getElementById('toastMS').textContent = "ACTUALIZACIÓN EXITOSA"
             $('#toast').toast('show');
         }
 
@@ -226,7 +226,7 @@ class Controller {
             }
 
             await fetch(`${this.API_URL}`, options);
-            document.getElementById('toastMS').textContent = "Eliminación exitosa."
+            document.getElementById('toastMS').textContent = "ELIMINACIÓN EXITOSA."
             $('#toast').toast('show');
             this.idSelected = null;
             this.paintTable();
@@ -252,7 +252,7 @@ class Controller {
 
             this.idSelected = null;
             this.paintTable();
-            document.getElementById('toastMS').textContent = "Eliminación exitosa."
+            document.getElementById('toastMS').textContent = "ELIMINACIÓN EXITOSA."
             $('#toast').toast('show');
         }
     }
@@ -260,6 +260,8 @@ class Controller {
         if (this.forAdd.products.length > 0 || this.forUpdate.products.length > 0 || this.forDelete.products.length > 0) {
             document.getElementById('btnSincronizar').classList.remove('d-none');
             document.getElementById('btnSincronizar').classList.add('d-inline-block');
+            document.getElementById('toastMS').textContent = "HAY ELEMENTOS POR SINCRONIZAR."
+            $('#toast').toast('show');
         } else {
             document.getElementById('btnSincronizar').classList.remove('d-inline-block');
             document.getElementById('btnSincronizar').classList.add('d-none');
@@ -370,8 +372,9 @@ class Controller {
             }
 
             if (this.areConexion) {
-                let response = await fetch(`${this.API_URL}/buscar`, options);
+                let response = await fetch(`${this.API_URL}buscar`, options);
                 let products = await response.json();
+                console.log(products)
                 this.inventary = {
                     products: products
                 }
@@ -524,20 +527,31 @@ class Controller {
             return false;
         } 
         else if ((!(exp.test(price.value))) || (!(exp.test(stock.value)))) {
-            document.getElementById('toastSCMS').textContent = 'Campos invalidos';
+            document.getElementById('toastSCMS').textContent = 'DATOS INVÁLIDOS';
             $('#toastSC').toast('show');
             if(!(exp.test(price.value))) {
                 price.classList.add('invalid');
+                document.getElementById('priceHelp').classList.remove('d-none');
+                document.getElementById('priceHelp').classList.add('d-block');
             }
             else {
                 price.classList.remove('invalid');
+                document.getElementById('priceHelp').classList.add('d-none');
+                document.getElementById('priceHelp').classList.remove('d-block');
             }
             if(!(exp.test(stock.value))) {
                 stock.classList.add('invalid');
+                document.getElementById('stockHelp').classList.remove('d-none');
+                document.getElementById('stockHelp').classList.add('d-block');
             }
             else {
                 stock.classList.remove('invalid');
+                document.getElementById('stockHelp').classList.add('d-none');
+                document.getElementById('stockHelp').classList.remove('d-block');
             }
+            name.classList.remove('invalid');
+            brand.classList.remove('invalid');
+
             return false;
 
         } else {

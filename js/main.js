@@ -42,7 +42,8 @@ document.getElementById('btnEditConfirm').addEventListener('click', function() {
 });
 
 document.getElementById('txtSearch').addEventListener('keyup', async function(event) {
-    if(event.keyCode != 46) {
+    if(event.keyCode != 46 && event.keyCode != 13) {
+        console.log(event.keyCode);
         document.getElementById('loading').classList.remove('d-none');
         document.getElementById('loading').classList.add('d-block');   
         await ctrl.searchProduct(document.getElementById('txtSearch').value.trim());
