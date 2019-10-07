@@ -24,7 +24,7 @@ class Controller {
         this.verifyConnection();
 
         if (this.areConexion) {
-            let response = await fetch(`http://${this.API_URL}`, options);
+            let response = await fetch(`${this.API_URL}`, options);
             let products = await response.json();
             this.inventary = {
                 products: products
@@ -85,7 +85,7 @@ class Controller {
                     },
                     body: JSON.stringify(product)
                 }
-                await fetch(`http://${this.API_URL}`, options);
+                await fetch(`${this.API_URL}`, options);
                 await this.paintTable();
 
                 document.getElementById('toastMS').textContent = "Registro exitoso."
@@ -148,7 +148,7 @@ class Controller {
                 },
                 body: JSON.stringify(product)
             }
-            await fetch(`http://${this.API_URL}`, options)
+            await fetch(`${this.API_URL}`, options)
 
             document.getElementById('toastMS').textContent = "Registro exitoso."
             $('#toast').toast('show');
@@ -199,7 +199,7 @@ class Controller {
         }
         document.getElementById('loading').classList.remove('d-none');
         document.getElementById('loading').classList.add('d-block');
-        await fetch(`http://${this.API_URL}`, options)
+        await fetch(`${this.API_URL}`, options)
             .then(() => {
                 this.areConexion = true;
             })
@@ -225,7 +225,7 @@ class Controller {
                 })
             }
 
-            await fetch(`http://${this.API_URL}`, options);
+            await fetch(`${this.API_URL}`, options);
             document.getElementById('toastMS').textContent = "Eliminación exitosa."
             $('#toast').toast('show');
             this.idSelected = null;
@@ -282,7 +282,7 @@ class Controller {
                     },
                     body: JSON.stringify(product)
                 }
-                await fetch(`http://${this.API_URL}`, options).then(() => {
+                await fetch(`${this.API_URL}`, options).then(() => {
                     this.areConexion = true;
                 }).catch(err => {
                     this.areConexion = false;
@@ -315,7 +315,7 @@ class Controller {
                     },
                     body: JSON.stringify(product)
                 }
-                await fetch(`http://${this.API_URL}`, options).catch(() => {
+                await fetch(`${this.API_URL}`, options).catch(() => {
                     this.areConexion = false;
                 });
                 this.forUpdate.products.splice(i, 1);
@@ -344,7 +344,7 @@ class Controller {
                     })
                 }
 
-                await fetch(`http://${this.API_URL}/`, options);
+                await fetch(`${this.API_URL}/`, options);
                 this.idSelected = null;
                 this.forDelete.products.splice(i, 1);
             }
@@ -370,7 +370,7 @@ class Controller {
             }
 
             if (this.areConexion) {
-                let response = await fetch(`http://${this.API_URL}/buscar`, options);
+                let response = await fetch(`${this.API_URL}/buscar`, options);
                 let products = await response.json();
                 this.inventary = {
                     products: products
