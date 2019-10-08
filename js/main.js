@@ -1,7 +1,7 @@
-let ctrl = new Controller(document.getElementById('table'));
+ctrl = new Controller(document.getElementById('table'));
 startUp();
 
-document.getElementById('btnGuardar').addEventListener('click', function() {
+document.getElementById('btnGuardar').addEventListener('click', async function() {
 
     let name = document.getElementById('name');
     let stock = document.getElementById('stock');
@@ -28,8 +28,8 @@ document.getElementById('btnLimpiar').addEventListener('click', function() {
 });
 
 
-document.getElementById('btnDeleteConfirm').addEventListener('click', function() {
-    ctrl.deleteProduct(ctrl.getIdSelected());
+document.getElementById('btnDeleteConfirm').addEventListener('click', async function() {
+    await ctrl.deleteProduct(ctrl.getIdSelected());
 });
 
 document.getElementById('btnEditConfirm').addEventListener('click', async function() {

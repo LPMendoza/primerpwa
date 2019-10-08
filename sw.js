@@ -1,90 +1,65 @@
-// This is the service worker with the Cache-first network
+//asignar un nombre y versión al cache
+const CACHE_NAME = 'cache_inventario',
+  urlsToCache = [
+    './',
+    './css/style.css',
+    './js/Controller.js',
+    './js/main.js',
+    './img/edit.png',
+    './img/delete.png',
+    './img/b1.jpg',
+    './index.js',    
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
+    'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+  ]
 
-const CACHE = "pwabuilder-precache";
-const precacheFiles = [
-  './',
-  './css/style.css',
-  './js/Controller.js',
-  './js/main.js',
-  './img/loading.gif',
-  './img/edit.png',
-  './img/delete.png',
-  './img/b1.jpg',
-];
-
-self.addEventListener("install", function (event) {
-  console.log("[PWA Builder] Install Event processing");
-
-  console.log("[PWA Builder] Skip waiting on install");
-  self.skipWaiting();
-
-  event.waitUntil(
-    caches.open(CACHE).then(function (cache) {
-      console.log("[PWA Builder] Caching pages during install");
-      return cache.addAll(precacheFiles);
+//durante la fase de instalación, generalmente se almacena en caché los activos estáticos
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE_NAME)
+    .then(cache => {
+      return cache.addAll(urlsToCache)
+        .then(() => self.skipWaiting())
     })
-  );
-});
+    .catch(err => console.log('Falló registro de cache', err))
+  )
+})
 
-// Allow sw to control of current page
-self.addEventListener("activate", function (event) {
-  console.log("[PWA Builder] Claiming clients for current page");
-  event.waitUntil(self.clients.claim());
-});
+//una vez que se instala el SW, se activa y busca los recursos para hacer que funcione sin conexión
+self.addEventListener('activate', e => {
+  const cacheWhitelist = [CACHE_NAME]
 
-// If any fetch fails, it will look for the request in the cache and serve it from there first
-self.addEventListener("fetch", function (event) {
-  if (event.request.method !== "GET") return;
+  e.waitUntil(
+    caches.keys()
+    .then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          //Eliminamos lo que ya no se necesita en cache
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName)
+          }
+        })
+      )
+    })
+    // Le indica al SW activar el cache actual
+    .then(() => self.clients.claim())
+  )
+})
 
-  event.respondWith(
-    fromCache(event.request).then(
-      function (response) {
-        // The response was found in the cache so we responde with it and update the entry
-
-        // This is where we call the server to get the newest version of the
-        // file to use the next time we show view
-        event.waitUntil(
-          fetch(event.request).then(function (response) {
-            return updateCache(event.request, response);
-          })
-        );
-
-        return response;
-      },
-      function () {
-        // The response was not found in the cache so we look for it on the server
-        return fetch(event.request)
-          .then(function (response) {
-            // If request was success, add or update it in the cache
-            event.waitUntil(updateCache(event.request, response.clone()));
-
-            return response;
-          })
-          .catch(function (error) {
-            console.log("[PWA Builder] Network request failed and no cache." + error);
-          });
+//cuando el navegador recupera una url
+self.addEventListener('fetch', e => {
+  //Responder ya sea con el objeto en caché o continuar y buscar la url real
+  e.respondWith(
+    caches.match(e.request)
+    .then(res => {
+      if (res) {
+        //recuperar del cache
+        return res
       }
-    )
-  );
-});
-
-function fromCache(request) {
-  // Check to see if you have it in the cache
-  // Return response
-  // If not in the cache, then return
-  return caches.open(CACHE).then(function (cache) {
-    return cache.match(request).then(function (matching) {
-      if (!matching || matching.status === 404) {
-        return Promise.reject("no-match");
-      }
-
-      return matching;
-    });
-  });
-}
-
-function updateCache(request, response) {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.put(request, response);
-  });
-}
+      //recuperar de la petición a la url
+      return fetch(e.request)
+    })
+  )
+})

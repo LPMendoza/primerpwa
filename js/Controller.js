@@ -14,15 +14,13 @@ class Controller {
     }
 
     async getProducts() {
-
         let options = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         }
-        this.verifyConnection();
-
+        await this.verifyConnection();
         if (this.areConexion) {
             let response = await fetch(`${this.API_URL}`, options);
             let products = await response.json();
@@ -44,6 +42,8 @@ class Controller {
             this.toSync();
 
         } else {
+            this.verifyLocalVariables();
+
             if (localStorage.getItem('inventary') != null) {
                 this.inventary = JSON.parse(localStorage.getItem('inventary'));
                 let prd = this.inventary.products;
@@ -63,7 +63,6 @@ class Controller {
                 this.lastId = 0;
 
             }
-            this.verifyLocalVariables();
         }
     }
 
@@ -628,6 +627,7 @@ class Controller {
 
         document.getElementById('loading').classList.remove('d-none');
         document.getElementById('loading').classList.add('d-block');
+        await this.verifyConnection();
         if (this.areConexion) {
             await this.getProducts();
             this.table.innerHTML = '';
@@ -681,7 +681,9 @@ class Controller {
             }
 
         } else {
-            this.getProducts();
+            this.verifyLocalVariables();
+
+            await this.getProducts();
             this.table.innerHTML = '';
 
             let thead = this.table.createTHead(0);
