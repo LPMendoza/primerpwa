@@ -32,18 +32,17 @@ document.getElementById('btnDeleteConfirm').addEventListener('click', function()
     ctrl.deleteProduct(ctrl.getIdSelected());
 });
 
-document.getElementById('btnEditConfirm').addEventListener('click', function() {
+document.getElementById('btnEditConfirm').addEventListener('click', async function() {
     let name = document.getElementById('name');
     let stock = document.getElementById('stock');
     let price = document.getElementById('price');
     let brand = document.getElementById('brand');
 
-    ctrl.updateProduct(ctrl.getIdSelected(), name, stock, price, brand);
+    await ctrl.updateProduct(ctrl.getIdSelected(), name, stock, price, brand);
 });
 
 document.getElementById('txtSearch').addEventListener('keyup', async function(event) {
     if(event.keyCode != 46 && event.keyCode != 13) {
-        console.log(event.keyCode);
         document.getElementById('loading').classList.remove('d-none');
         document.getElementById('loading').classList.add('d-block');   
         await ctrl.searchProduct(document.getElementById('txtSearch').value.trim());

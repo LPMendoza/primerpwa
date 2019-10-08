@@ -155,7 +155,7 @@ class Controller {
 
             this.cleanFields(name, stock, price, brand);
             this.idSelected = null;
-            this.paintTable();
+            await this.paintTable();
 
             document.getElementById('toastMS').textContent = "ACTUALIZACIÓN EXITOSA"
             $('#toast').toast('show');
@@ -182,7 +182,7 @@ class Controller {
             }
             this.cleanFields(name, stock, price, brand);
             this.idSelected = null;
-            this.paintTable();
+            await this.paintTable();
 
             document.getElementById('toastMS').textContent = "ACTUALIZACIÓN EXITOSA"
             $('#toast').toast('show');
@@ -374,7 +374,6 @@ class Controller {
             if (this.areConexion) {
                 let response = await fetch(`${this.API_URL}buscar`, options);
                 let products = await response.json();
-                console.log(products)
                 this.inventary = {
                     products: products
                 }
