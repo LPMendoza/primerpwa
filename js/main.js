@@ -71,8 +71,7 @@ document.getElementById('btnRefreshTable').addEventListener('click', async funct
     document.getElementById('loading').classList.remove('d-block');
 });
 
-async function startUp() { 
-    
+async function startUp() {     
     await ctrl.verifyConnection();    
     await ctrl.paintTable();
 }

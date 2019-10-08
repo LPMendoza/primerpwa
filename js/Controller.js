@@ -150,9 +150,6 @@ class Controller {
             }
             await fetch(`${this.API_URL}`, options)
 
-            document.getElementById('toastMS').textContent = "REGISTRO EXITOSO"
-            $('#toast').toast('show');
-
             this.cleanFields(name, stock, price, brand);
             this.idSelected = null;
             await this.paintTable();
@@ -229,7 +226,7 @@ class Controller {
             document.getElementById('toastMS').textContent = "ELIMINACIÓN EXITOSA."
             $('#toast').toast('show');
             this.idSelected = null;
-            this.paintTable();
+            await this.paintTable();
         } else {
             let products = this.inventary.products;
             let productToDelete;
@@ -251,7 +248,7 @@ class Controller {
             localStorage.setItem('forDelete', JSON.stringify(this.forDelete));
 
             this.idSelected = null;
-            this.paintTable();
+            await this.paintTable();
             document.getElementById('toastMS').textContent = "ELIMINACIÓN EXITOSA."
             $('#toast').toast('show');
         }
