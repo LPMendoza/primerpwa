@@ -425,6 +425,7 @@ class Controller {
 
                 }
             } else {
+                this.productsFound = [];
                 if (localStorage.getItem('inventary') != null) {
 
                     let products = this.inventary.products;
