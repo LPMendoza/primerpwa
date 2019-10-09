@@ -3,6 +3,7 @@ const CACHE_NAME = 'cache_inventario',
   urlsToCache = [
     './',
     './css/style.css',
+    './js/QuickSort.js',
     './js/Controller.js',
     './js/main.js',
     './img/edit.png',
