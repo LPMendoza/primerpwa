@@ -477,6 +477,29 @@ class Controller {
                             document.getElementById('stock').value = this.productsFound[i].stock;
                             document.getElementById('price').value = this.productsFound[i].price;
                             document.getElementById('brand').value = this.productsFound[i].brand;
+                            let btnLimpiar = document.getElementById('btnLimpiar');
+                            btnLimpiar.classList.remove('d-inline-block');
+                            btnLimpiar.classList.add('d-none');
+
+                            document.getElementById('btnCancelar').classList.remove('d-none');
+                            let btnCancel = document.getElementById('btnCancelar');
+                            btnCancel.classList.add('d-inline-block');
+                            btnCancel.classList.remove('d-none');
+                            btnCancel.addEventListener('click', () => {
+
+                                document.getElementById('name').value = '';
+                                document.getElementById('stock').value = '';
+                                document.getElementById('price').value = '';
+                                document.getElementById('brand').value = '';
+
+                                btnCancel.classList.remove('d-inline-block');
+                                btnCancel.classList.add('d-none');
+
+                                btnLimpiar.classList.add('d-inline-block');
+                                btnLimpiar.classList.remove('d-none');
+
+                                this.idSelected = null;
+                            });
                         });
 
                     }
@@ -491,56 +514,49 @@ class Controller {
     valid(name, stock, price, brand) {
 
         let exp = /^\d+$/;
-        if (name.value == "" || stock.value == "" || price.value == "" || brand.value == "") {            
+        if (name.value == "" || stock.value == "" || price.value == "" || brand.value == "") {
             document.getElementById('toastSCMS').textContent = 'Hay campos faltantes';
             $('#toastSC').toast('show');
 
-            if(name.value == "") {
+            if (name.value == "") {
                 name.classList.add('invalid');
-            }
-            else {
+            } else {
                 name.classList.remove('invalid');
             }
-            if(stock.value == "") {
+            if (stock.value == "") {
                 stock.classList.add('invalid');
-            }
-            else {
+            } else {
                 stock.classList.remove('invalid');
             }
-            if(price.value == "") {
+            if (price.value == "") {
                 price.classList.add('invalid');
-            }
-            else {
+            } else {
                 price.classList.remove('invalid');
             }
-            if(brand.value == "") {
+            if (brand.value == "") {
                 brand.classList.add('invalid');
-            }
-            else {
+            } else {
                 brand.classList.remove('invalid');
             }
 
             return false;
-        } 
-        else if ((!(exp.test(price.value))) || (!(exp.test(stock.value)))) {
+        } else if ((!(exp.test(price.value))) || (!(exp.test(stock.value)))) {
             document.getElementById('toastSCMS').textContent = 'DATOS INVÁLIDOS';
             $('#toastSC').toast('show');
-            if(!(exp.test(price.value))) {
+            if (!(exp.test(price.value))) {
                 price.classList.add('invalid');
                 document.getElementById('priceHelp').classList.remove('d-none');
                 document.getElementById('priceHelp').classList.add('d-block');
-            }
-            else {
+            } else {
                 price.classList.remove('invalid');
                 document.getElementById('priceHelp').classList.add('d-none');
                 document.getElementById('priceHelp').classList.remove('d-block');
             }
-            if(!(exp.test(stock.value))) {
+            if (!(exp.test(stock.value))) {
                 stock.classList.add('invalid');
                 document.getElementById('stockHelp').classList.remove('d-none');
                 document.getElementById('stockHelp').classList.add('d-block');
-            }
-            else {
+            } else {
                 stock.classList.remove('invalid');
                 document.getElementById('stockHelp').classList.add('d-none');
                 document.getElementById('stockHelp').classList.remove('d-block');
@@ -728,6 +744,29 @@ class Controller {
                     document.getElementById('stock').value = this.inventary.products[i].stock;
                     document.getElementById('price').value = this.inventary.products[i].price;
                     document.getElementById('brand').value = this.inventary.products[i].brand;
+                    let btnLimpiar = document.getElementById('btnLimpiar');
+                    btnLimpiar.classList.remove('d-inline-block');
+                    btnLimpiar.classList.add('d-none');
+
+                    document.getElementById('btnCancelar').classList.remove('d-none');
+                    let btnCancel = document.getElementById('btnCancelar');
+                    btnCancel.classList.add('d-inline-block');
+                    btnCancel.classList.remove('d-none');
+                    btnCancel.addEventListener('click', () => {
+
+                        document.getElementById('name').value = '';
+                        document.getElementById('stock').value = '';
+                        document.getElementById('price').value = '';
+                        document.getElementById('brand').value = '';
+
+                        btnCancel.classList.remove('d-inline-block');
+                        btnCancel.classList.add('d-none');
+
+                        btnLimpiar.classList.add('d-inline-block');
+                        btnLimpiar.classList.remove('d-none');
+
+                        this.idSelected = null;
+                    });
                 });
             }
         }
