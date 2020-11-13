@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+    background: url('../img/b1.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Roboto';
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body::-webkit-scrollbar {
+    background: rgba(0, 0, 0, 0);
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #ff2e63;
+}
+
+.btn-danger {
+    background: #ff2e63 !important;
+    border-color: #ff2e63 !important;
+}
+
+.btn-danger:hover {
+    background: #d1244f !important;
+    border-color: #d1244f !important;
+}
+
+.text-primary {
+    color: #07b6b3 !important;
+}
+
+.btn-primary {
+    background: #07b6b3 !important;
+    border-color: #07b6b3 !important;
+}
+
+.btn-primary:hover {
+    background: #058b89 !important;
+    border-color: #069693 !important;
+}
+
+.contTable::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.0);
+}
+
+.contTable::-webkit-scrollbar {
+    background: rgba(0, 0, 0, 0);
+    width: 6px;
+}
+
+.contTable::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.contTable::-webkit-scrollbar-thumb:hover {
+    background: #ff2e63;
+}
+
+.invalid {
+    border-color: red;
+}
+
+#btnSincrionizar {
+    display: none !important;
+}
+
+.invalid {
+    border-color: red;
+}

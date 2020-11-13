@@ -1,0 +1,21 @@
+{
+    "name": "Inventario",
+    "short_name": "Inventario",
+    "description": "Controla el inventario",
+    "background_color": "#fff",
+    "theme_color": "#2B57D2",
+    "orientation": "portrait",
+    "display": "standalone",
+    "start_url": "./",
+    "scope": "./",
+    "lang": "es-MX",
+    "icons": [
+        {
+          "src": "./img/icon_1024.png",
+          "sizes": "1024x1024",
+          "type": "image/png",
+          "purpose": "maskable"
+        },
+      ]
+
+}
